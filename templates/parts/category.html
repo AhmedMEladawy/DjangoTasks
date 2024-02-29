@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .small-image {
+        max-width: 150;  
+        max-height: 150; 
+    }
+</style>
+
+<table>
+    <tr>
+        <th>ID</th>
+
+        <th>Category</th>
+
+        <th>Action</th>
+    </tr>
+    {% for track in data %}
+        <tr>
+            <td>{{ track.id }}</td>
+
+            <td>{{ track.content }}</td>
+
+            <td>
+                <a href="{% url 'tracks_show' track.id %}">Show</a>
+                <a href="{% url 'tracks_delete' track.id %}">Delete</a>
+                <a href="{% url 'tracks_update' track.id %}">Update</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

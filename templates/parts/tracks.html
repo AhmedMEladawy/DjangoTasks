@@ -1,0 +1,70 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .small-image {
+        max-width: 150px; 
+        max-height: 150px; 
+    }
+
+    
+    a {
+        display: inline-block;
+        padding: 6px 12px;
+        margin: 5px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    a:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+    {% for track in data %}
+        <tr>
+            <td>{{ track.id }}</td>
+            <td>{{ track.name }}</td>
+            <td>{{ track.content }}</td>
+            <td>{{ track.price }}</td>
+            <td><img src="{{ track.image.url }}" alt="" class="small-image"></td>
+            <td>
+                <a href="{% url 'tracks_show' track.id %}">Show</a>
+                <a href="{% url 'tracks_delete' track.id %}">Delete</a>
+                <a href="{% url 'tracks_update' track.id %}">Update</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}
